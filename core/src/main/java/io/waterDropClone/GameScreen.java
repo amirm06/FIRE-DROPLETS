@@ -5,6 +5,8 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -15,7 +17,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class GameScreen extends ScreenAdapter {
-
+    private BitmapFont font;
     Rectangle bucketRectangle;
     Rectangle dropRectangle;
     float dropTimer;//keeping track of firebolts
@@ -30,7 +32,9 @@ public class GameScreen extends ScreenAdapter {
     Vector2 touchPos;
     float dropHeight;
     Main game;
+    GlyphLayout lives;
 
+    String scoreText;
     Array<Sprite> dropSprites; //hado homa l firebolts li yti7o m sma
    // @Override
 
@@ -40,6 +44,10 @@ public class GameScreen extends ScreenAdapter {
 
     public void show() {
 
+        font = new BitmapFont(); // Initialize the font
+        font.setColor(Color.WHITE); // Optional: Set font color
+        font.getData().setScale(0.5f); // Optional: Adjust size
+        lives = new GlyphLayout(font, "3/3"); // Now font is initialized
 
         bucketRectangle = new Rectangle();
         dropRectangle = new Rectangle();
@@ -47,6 +55,7 @@ public class GameScreen extends ScreenAdapter {
         backgroundTexture = new Texture("background.png");
         bucketTexture = new Texture("Criminal_Buckets_Says.png");
         dropTexture = new Texture("buck2.png");
+        lives = new GlyphLayout(font, "3/3");
         touchPos = new Vector2();
         //for music and sound effects
         dropSound = Gdx.audio.newSound(Gdx.files.internal("Minecraft Item Drop Sound Effect!.mp3"));
@@ -153,9 +162,18 @@ public class GameScreen extends ScreenAdapter {
 
         bucketSprite.draw(spriteBatch);
 
+
         for (Sprite dropSprite : dropSprites) {
             dropSprite.draw(spriteBatch);
         }
+
+
+
+        font.draw(spriteBatch, "3/3",
+            viewport.getWorldWidth() - lives.width - 10, // 10px padding from the right
+            viewport.getWorldHeight() - 10 // 10px padding from the top
+        );
+
         spriteBatch.end();
     }
     /////////////////////////////////////////////////////////////////////////////////////////
