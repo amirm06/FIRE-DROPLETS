@@ -28,7 +28,8 @@ Include some images showcasing the game.
 Specify the license under which your game is distributed.
 
 ## Credits
-List anyone who contributed to the game, including assets, music, and code.
+me :p 
+music from https://www.youtube.com/watch?v=1wWdIX5VsBY
 
 ## Contact
 i'm active on Discord 
