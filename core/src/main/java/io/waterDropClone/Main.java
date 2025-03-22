@@ -79,6 +79,15 @@ public class Main extends ApplicationAdapter {
             bucketSprite.translateX(-speed);
             bucketSprite.translateX(-speed * delta);
         }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+            bucketSprite.translateX(speed);
+            bucketSprite.translateX(speed * delta); // Move the bucket right
+        } else if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+            bucketSprite.translateX(-speed);
+            bucketSprite.translateX(-speed * delta);
+        }
+
         //FOR MOUSE INPUT
         if (Gdx.input.isTouched()) {
             touchPos.set(Gdx.input.getX(), Gdx.input.getY()); // Get where the touch happened on screen
