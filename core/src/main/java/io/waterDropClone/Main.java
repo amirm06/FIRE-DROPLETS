@@ -19,6 +19,7 @@ public class Main extends Game {
 
     @Override
     public void create() {
+
         setScreen(new TitleScreen(this)); // Start with the title screen
 
     }

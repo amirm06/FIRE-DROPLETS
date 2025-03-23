@@ -23,7 +23,7 @@ public class GameScreen extends ScreenAdapter {
     float dropTimer;//keeping track of firebolts
     Sprite bucketSprite;
     Texture backgroundTexture;
-    Texture bucketTexture;
+    Texture bucketTexture,bucketTexturehappy;
     Texture dropTexture;
     Sound dropSound;
     Music music;
@@ -33,7 +33,10 @@ public class GameScreen extends ScreenAdapter {
     float dropHeight;
     Main game;
     GlyphLayout lives;
+   int score=0;
 
+    private boolean collided = false;  // Collision flag
+    private float changeTime = 0;
     String scoreText;
     Array<Sprite> dropSprites; //hado homa l firebolts li yti7o m sma
    // @Override
@@ -54,6 +57,7 @@ public class GameScreen extends ScreenAdapter {
         dropSprites = new Array<>(); //created firebolts
         backgroundTexture = new Texture("background.png");
         bucketTexture = new Texture("Criminal_Buckets_Says.png");
+        bucketTexturehappy = new Texture("Criminal_Buckets_Says_Image_copy_2.png");
         dropTexture = new Texture("buck2.png");
         lives = new GlyphLayout(font, "3/3");
         touchPos = new Vector2();
@@ -67,11 +71,14 @@ public class GameScreen extends ScreenAdapter {
         bucketSprite = new Sprite(bucketTexture); // Initialize the sprite based on the texture
         bucketSprite.setSize(1, 1);
 
-       if (game.getScreen() instanceof LoseScreen) { System.out.println("pausing music"); music.pause();}
-       else {music.setLooping(true);
-           music.setVolume(.5f);
-           music.play();
-       }
+        if (!music.isPlaying()) {
+            music.setLooping(true);
+            music.setVolume(.5f);
+            music.play();
+        }
+
+
+
 
     }
     @Override
@@ -145,11 +152,22 @@ public class GameScreen extends ScreenAdapter {
 
             if (dropSprite.getY() < -dropHeight)  game.setScreen(new LoseScreen(game));
 
-            else if (bucketRectangle.overlaps(dropRectangle)) { // Check if the bucket overlaps the drop
+            else if (bucketRectangle.overlaps(dropRectangle)) {
+                bucketSprite.setTexture(bucketTexturehappy);// Check if the bucket overlaps the drop
+                collided = true;
+                changeTime = 1f;
                 dropSprites.removeIndex(i);
+                score=score+1;
+
                 dropSound.play(); // Remove the drop
             }
-
+            if (collided) {
+                changeTime -= delta;
+                if (changeTime <= 0) {
+                    bucketSprite.setTexture(bucketTexture); // Revert to default sprite
+                    collided = false; // Reset flag
+                }
+            }
 
         }
         dropTimer += delta; // Adds the current delta to the timer
@@ -198,6 +216,8 @@ public class GameScreen extends ScreenAdapter {
         dropSprite.setX(MathUtils.random(0f, worldWidth - dropWidth)); // Randomize the drop's x position
         dropSprite.setY(worldHeight);
         dropSprites.add(dropSprite);
+
+System.out.println(score);
     }
 }
 
