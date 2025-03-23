@@ -16,19 +16,18 @@ truly the best gaming experience and GOTY-worthy.
 - **Arrow Keys LEFT and RIGHT || A and D keys**: Move your criminal bucket
 - Also playable with a mouse or even a touchpad!!
 
+
 ## Screenshots
-![Gameplay Screenshot](screenshots/screenshot1.png)
 
-## License
-Specify the license under which your game is distributed.
+<p align="center">
+  <img src="screenshots/screenshot1.png" width="45%">
+  <img src="screenshots/screenshot2.png" width="45%">
+</p>
 
-## Credits
-List anyone who contributed to the game, including assets, music, and code.
 
 ## Contact
 I'm active on Discord:
 
-<p align="center">
-  <a href="https://discord.com/users/842802383036743700">My Discord Profile</a>
-</p>
+[![Discord](https://img.shields.io/badge/Discord-5865F2?logo=discord&logoColor=white&style=for-the-badge)](https://discord.com/users/842802383036743700)
+
 
