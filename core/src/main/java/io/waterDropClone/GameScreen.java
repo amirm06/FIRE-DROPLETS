@@ -66,9 +66,13 @@ public class GameScreen extends ScreenAdapter {
 
         bucketSprite = new Sprite(bucketTexture); // Initialize the sprite based on the texture
         bucketSprite.setSize(1, 1);
-        music.setLooping(true);
-        music.setVolume(.5f);
-        music.play();
+
+       if (game.getScreen() instanceof LoseScreen) { System.out.println("pausing music"); music.pause();}
+       else {music.setLooping(true);
+           music.setVolume(.5f);
+           music.play();
+       }
+
     }
     @Override
     public void resize(int width, int height) {
@@ -107,8 +111,11 @@ public class GameScreen extends ScreenAdapter {
         if (Gdx.input.isTouched()) {
             touchPos.set(Gdx.input.getX(), Gdx.input.getY()); // Get where the touch happened on screen
             viewport.unproject(touchPos); // Convert the units to the world units of the viewport
-            bucketSprite.setCenterX(touchPos.x); // Change the horizontally centered position of the bucket
+            bucketSprite.setCenterX(touchPos.x);
+             // Change the horizontally centered position of the bucket
         }
+
+
     }
     //GAME LOGIC==============================================================================================
     private void logic() {
@@ -136,7 +143,8 @@ public class GameScreen extends ScreenAdapter {
             // Apply the drop position and size to the dropRectangle
             dropRectangle.set(dropSprite.getX(), dropSprite.getY(), dropWidth, dropHeight);
 
-            if (dropSprite.getY() < -dropHeight) dropSprites.removeIndex(i);
+            if (dropSprite.getY() < -dropHeight)  game.setScreen(new LoseScreen(game));
+
             else if (bucketRectangle.overlaps(dropRectangle)) { // Check if the bucket overlaps the drop
                 dropSprites.removeIndex(i);
                 dropSound.play(); // Remove the drop
