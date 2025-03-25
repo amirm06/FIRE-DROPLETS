@@ -22,11 +22,18 @@ public class GameScreen extends ScreenAdapter {
     Rectangle dropRectangle;
     float dropTimer;//keeping track of firebolts
     Sprite bucketSprite;
+    float dropInterval = 1f; // Initial interval (1 second)
+    float minDropInterval = 0.2f; // Minimum interval limit
+    float intervalDecreaseRate = 0.02f;
+    //for backgrounds
     Texture backgroundTexture;
+    Texture backgroundTexture2 , backgroundTexture3;
     Texture bucketTexture,bucketTexturehappy;
     Texture dropTexture;
+    //audio shi
     Sound dropSound;
     Music music;
+    Music music2,music3;
     SpriteBatch spriteBatch;
     FitViewport viewport;
     Vector2 touchPos;
@@ -34,6 +41,9 @@ public class GameScreen extends ScreenAdapter {
     Main game;
     GlyphLayout lives;
    int score=0;
+   BitmapFont scoreFont;
+    SpriteBatch fontBatch;
+////
 
     private boolean collided = false;  // Collision flag
     private float changeTime = 0;
@@ -52,10 +62,18 @@ public class GameScreen extends ScreenAdapter {
         font.getData().setScale(0.5f); // Optional: Adjust size
         lives = new GlyphLayout(font, "3/3"); // Now font is initialized
 
+        fontBatch = new SpriteBatch();
+        scoreFont = new BitmapFont();
+        scoreFont.setColor(Color.WHITE);
+        scoreFont.getData().setScale(2);
+
         bucketRectangle = new Rectangle();
         dropRectangle = new Rectangle();
         dropSprites = new Array<>(); //created firebolts
         backgroundTexture = new Texture("background.png");
+        backgroundTexture2 = new Texture("background2.png");
+        backgroundTexture3 = new Texture("background3.png");
+
         bucketTexture = new Texture("Criminal_Buckets_Says.png");
         bucketTexturehappy = new Texture("Criminal_Buckets_Says_Image_copy_2.png");
         dropTexture = new Texture("buck2.png");
@@ -64,6 +82,8 @@ public class GameScreen extends ScreenAdapter {
         //for music and sound effects
         dropSound = Gdx.audio.newSound(Gdx.files.internal("Minecraft Item Drop Sound Effect!.mp3"));
         music = Gdx.audio.newMusic(Gdx.files.internal("maxb24 - shawty wanna fuck (instrumental).mp3"));
+        music2 = Gdx.audio.newMusic(Gdx.files.internal("Shawty Wanna Fuck (Slowed  Reverb).mp3"));
+        music3 = Gdx.audio.newMusic(Gdx.files.internal("Shawty Wanna Fuck (Nightcore).mp3"));
         //how the game looks and the window
         spriteBatch = new SpriteBatch();
         viewport = new FitViewport(8, 5);
@@ -150,8 +170,12 @@ public class GameScreen extends ScreenAdapter {
             // Apply the drop position and size to the dropRectangle
             dropRectangle.set(dropSprite.getX(), dropSprite.getY(), dropWidth, dropHeight);
 
-            if (dropSprite.getY() < -dropHeight)  game.setScreen(new LoseScreen(game));
-
+            if (dropSprite.getY() < -dropHeight) {
+            music.stop();
+            music2.stop();
+            music3.stop();
+                game.setScreen(new LoseScreen(game));
+            }
             else if (bucketRectangle.overlaps(dropRectangle)) {
                 bucketSprite.setTexture(bucketTexturehappy);// Check if the bucket overlaps the drop
                 collided = true;
@@ -174,6 +198,7 @@ public class GameScreen extends ScreenAdapter {
         if (dropTimer > 1f) { // Check if it has been more than a second
             dropTimer = 0; // Reset the timer
             createDroplet(); // Create the droplet
+            dropInterval = Math.max(minDropInterval, dropInterval - intervalDecreaseRate);
         }
     }
     //THATS FOR DRAWING-----------------------------------------------------------------------------------------
@@ -181,12 +206,23 @@ public class GameScreen extends ScreenAdapter {
         ScreenUtils.clear(Color.BLACK);
         viewport.apply();
         spriteBatch.setProjectionMatrix(viewport.getCamera().combined);
-        spriteBatch.begin();
+        spriteBatch.begin(); ///beggining of drawing
         float worldWidth = viewport.getWorldWidth();
         float worldHeight = viewport.getWorldHeight();
         spriteBatch.draw(backgroundTexture, 0, 0, worldWidth, worldHeight);
+            if(score>=40){
+                music.stop();
+                music2.play();
+                backgroundTexture = backgroundTexture2 ;
+        }
+        if (score >= 75) {
+            music2.stop();
+            music3.play();
 
+            backgroundTexture = backgroundTexture3;
+        }
         bucketSprite.draw(spriteBatch);
+        scoreFont.draw(spriteBatch, "score"+score,100,450);
 
 
         for (Sprite dropSprite : dropSprites) {
@@ -200,7 +236,9 @@ public class GameScreen extends ScreenAdapter {
             viewport.getWorldHeight() - 10 // 10px padding from the top
         );
 
-        spriteBatch.end();
+
+
+        spriteBatch.end(); //end of draring
     }
     /////////////////////////////////////////////////////////////////////////////////////////
     private void createDroplet() {
