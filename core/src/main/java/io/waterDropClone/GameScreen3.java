@@ -114,7 +114,7 @@ public class GameScreen3 extends ScreenAdapter {
     }
     //THATS FOR INPUTS -----------------------------------------------------------------------------------------------------
     private void input() {
-        float speed = .15f;
+        float speed = .8f;
         float delta = Gdx.graphics.getDeltaTime();
 //FOR KEYBOARD INPUT--------------------------------------------------------------------------------------------
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
@@ -208,7 +208,7 @@ public class GameScreen3 extends ScreenAdapter {
         float worldHeight = viewport.getWorldHeight();
         spriteBatch.draw(backgroundTexture, 0, 0, worldWidth, worldHeight);
 
-        if(score>=100){
+        if(score>=130){
             music3.stop();
             celeb.play();
             game.setScreen(new WinScreen2(game,this));

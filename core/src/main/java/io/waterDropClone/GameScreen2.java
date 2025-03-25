@@ -209,7 +209,7 @@ public class GameScreen2 extends ScreenAdapter {
         float worldHeight = viewport.getWorldHeight();
         spriteBatch.draw(backgroundTexture, 0, 0, worldWidth, worldHeight);
 
-        if(score>=55){
+        if(score>=30){
             music2.stop();
             celeb.play();
            game.setScreen(new WinScreen2(game,this));
