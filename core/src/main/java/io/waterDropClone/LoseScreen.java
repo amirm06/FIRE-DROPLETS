@@ -104,6 +104,7 @@ public class LoseScreen extends ScreenAdapter {
         font.dispose();
         sadcriminalBuck.dispose();
         youlost.dispose();
+        music.dispose();
     }
 
 

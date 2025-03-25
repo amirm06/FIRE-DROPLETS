@@ -43,6 +43,7 @@ public class GameScreen extends ScreenAdapter {
    int score=0;
    BitmapFont scoreFont;
     SpriteBatch fontBatch;
+    Music celeb;
 ////
 
     private boolean collided = false;  // Collision flag
@@ -80,6 +81,7 @@ public class GameScreen extends ScreenAdapter {
         lives = new GlyphLayout(font, "3/3");
         touchPos = new Vector2();
         //for music and sound effects
+        celeb = Gdx.audio.newMusic(Gdx.files.internal("Celebration Sound Effect.mp3"));
         dropSound = Gdx.audio.newSound(Gdx.files.internal("Minecraft Item Drop Sound Effect!.mp3"));
         music = Gdx.audio.newMusic(Gdx.files.internal("maxb24 - shawty wanna fuck (instrumental).mp3"));
         music2 = Gdx.audio.newMusic(Gdx.files.internal("Shawty Wanna Fuck (Slowed  Reverb).mp3"));
@@ -171,9 +173,7 @@ public class GameScreen extends ScreenAdapter {
             dropRectangle.set(dropSprite.getX(), dropSprite.getY(), dropWidth, dropHeight);
 
             if (dropSprite.getY() < -dropHeight) {
-            music.stop();
-            music2.stop();
-            music3.stop();
+             music.stop();
                 game.setScreen(new LoseScreen(game));
             }
             else if (bucketRectangle.overlaps(dropRectangle)) {
@@ -210,17 +210,12 @@ public class GameScreen extends ScreenAdapter {
         float worldWidth = viewport.getWorldWidth();
         float worldHeight = viewport.getWorldHeight();
         spriteBatch.draw(backgroundTexture, 0, 0, worldWidth, worldHeight);
-            if(score>=40){
+            if(score>=25){
                 music.stop();
-                music2.play();
-                backgroundTexture = backgroundTexture2 ;
+                celeb.play();
+                game.setScreen(new WinScreen1(game,this));
         }
-        if (score >= 75) {
-            music2.stop();
-            music3.play();
 
-            backgroundTexture = backgroundTexture3;
-        }
         bucketSprite.draw(spriteBatch);
         scoreFont.draw(spriteBatch, "score"+score,100,450);
 
