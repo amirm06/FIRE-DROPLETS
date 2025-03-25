@@ -27,7 +27,7 @@ public class GameScreen2 extends ScreenAdapter {
     float intervalDecreaseRate = 0.02f;
     //for backgrounds
     Texture backgroundTexture;
-    Texture backgroundTexture2 , backgroundTexture3;
+
     Texture bucketTexture,bucketTexturehappy;
     Texture dropTexture;
     //audio shi
@@ -41,7 +41,7 @@ public class GameScreen2 extends ScreenAdapter {
     float dropHeight;
     Main game;
     GlyphLayout lives;
-    int score=0;
+    int score=60;
     BitmapFont scoreFont;
     SpriteBatch fontBatch;
 ////
@@ -209,7 +209,7 @@ public class GameScreen2 extends ScreenAdapter {
         float worldHeight = viewport.getWorldHeight();
         spriteBatch.draw(backgroundTexture, 0, 0, worldWidth, worldHeight);
 
-        if(score>=30){
+        if(score>=60+170){
             music2.stop();
             celeb.play();
            game.setScreen(new WinScreen2(game,this));

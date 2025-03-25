@@ -27,7 +27,7 @@ public class GameScreen extends ScreenAdapter {
     float intervalDecreaseRate = 0.02f;
     //for backgrounds
     Texture backgroundTexture;
-    Texture backgroundTexture2 , backgroundTexture3;
+
     Texture bucketTexture,bucketTexturehappy;
     Texture dropTexture;
     //audio shi
@@ -72,8 +72,6 @@ public class GameScreen extends ScreenAdapter {
         dropRectangle = new Rectangle();
         dropSprites = new Array<>(); //created firebolts
         backgroundTexture = new Texture("background.png");
-        backgroundTexture2 = new Texture("background2.png");
-        backgroundTexture3 = new Texture("background3.png");
 
         bucketTexture = new Texture("Criminal_Buckets_Says.png");
         bucketTexturehappy = new Texture("Criminal_Buckets_Says_Image_copy_2.png");
@@ -179,9 +177,9 @@ public class GameScreen extends ScreenAdapter {
             else if (bucketRectangle.overlaps(dropRectangle)) {
                 bucketSprite.setTexture(bucketTexturehappy);// Check if the bucket overlaps the drop
                 collided = true;
-                changeTime = 1f;
+                changeTime = 1f; score=score+1;
                 dropSprites.removeIndex(i);
-                score=score+1;
+
 
                 dropSound.play(); // Remove the drop
             }
@@ -210,7 +208,7 @@ public class GameScreen extends ScreenAdapter {
         float worldWidth = viewport.getWorldWidth();
         float worldHeight = viewport.getWorldHeight();
         spriteBatch.draw(backgroundTexture, 0, 0, worldWidth, worldHeight);
-            if(score>=25){
+            if(score>=60){
                 music.stop();
                 celeb.play();
                 game.setScreen(new WinScreen1(game,this));

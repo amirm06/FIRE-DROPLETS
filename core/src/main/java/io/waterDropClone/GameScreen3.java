@@ -41,7 +41,7 @@ public class GameScreen3 extends ScreenAdapter {
     float dropHeight;
     Main game;
     GlyphLayout lives;
-    int score=0;
+    int score=60+170;
     BitmapFont scoreFont;
     SpriteBatch fontBatch;
 ////
@@ -114,7 +114,7 @@ public class GameScreen3 extends ScreenAdapter {
     }
     //THATS FOR INPUTS -----------------------------------------------------------------------------------------------------
     private void input() {
-        float speed = .8f;
+        float speed = 10.f;
         float delta = Gdx.graphics.getDeltaTime();
 //FOR KEYBOARD INPUT--------------------------------------------------------------------------------------------
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
@@ -208,7 +208,7 @@ public class GameScreen3 extends ScreenAdapter {
         float worldHeight = viewport.getWorldHeight();
         spriteBatch.draw(backgroundTexture, 0, 0, worldWidth, worldHeight);
 
-        if(score>=130){
+        if(score>=60+170+130){
             music3.stop();
             celeb.play();
             game.setScreen(new WinScreen2(game,this));
