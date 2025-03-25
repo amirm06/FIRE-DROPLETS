@@ -11,9 +11,11 @@ public class Lwjgl3Launcher {
         createApplication();
     }
 
-    private static Lwjgl3Application createApplication() {
+    private static Lwjgl3Application
+    createApplication() {
         return new Lwjgl3Application(new Main(), getDefaultConfiguration());
     }
+
 
     private static Lwjgl3ApplicationConfiguration getDefaultConfiguration() {
         Lwjgl3ApplicationConfiguration configuration = new Lwjgl3ApplicationConfiguration();
@@ -23,9 +25,11 @@ public class Lwjgl3Launcher {
 
         configuration.setForegroundFPS(Lwjgl3ApplicationConfiguration.getDisplayMode().refreshRate + 1);
 
-        configuration.setWindowedMode(640, 480);
+        configuration.setWindowedMode(800, 600);
         //// You can change these files; they are in lwjgl3/src/main/resources/ .
         configuration.setWindowIcon("buck2.png");
         return configuration;
     }
 }
+
+////

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="dessinDROPLET.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.3843855"
+     inkscape:cx="326.49865"
+     inkscape:cy="318.91405"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <rect
+       x="187.80896"
+       y="213.09093"
+       width="32.505396"
+       height="18.058554"
+       id="rect3" />
+    <rect
+       x="541.75661"
+       y="259.32083"
+       width="311.32946"
+       height="55.620345"
+       id="rect2" />
+    <rect
+       x="91.01511"
+       y="197.92175"
+       width="644.32919"
+       height="333.72207"
+       id="rect1" />
+  </defs>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text1"
+       style="font-size:56px;white-space:pre;shape-inside:url(#rect1);fill:#000000"><tspan
+         x="91.015625"
+         y="249.01237"
+         id="tspan7"><tspan
+           style="font-style:italic;font-weight:bold;font-family:Georgia;-inkscape-font-specification:'Georgia, Bold Italic';fill:#420042"
+           id="tspan1">FIRE DROPLETS</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text2"
+       style="fill:#000000;white-space:pre;shape-inside:url(#rect2)" />
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text3"
+       style="fill:#000000;white-space:pre;shape-inside:url(#rect3)" />
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.8167px;font-family:Georgia;-inkscape-font-specification:'Georgia, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#420042;fill-opacity:1;stroke-width:0.264583"
+       x="138.17953"
+       y="97.471046"
+       id="text5"><tspan
+         sodipodi:role="line"
+         id="tspan5"
+         style="stroke-width:0.264583"
+         x="138.17953"
+         y="97.471046"></tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         id="tspan6"
+         x="138.17953"
+         y="115.99192" /></text>
+  </g>
+</svg>
